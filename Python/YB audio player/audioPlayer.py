@@ -24,7 +24,7 @@ def download_youtube_audio(url, output_format="mp3"):
         info_dict = ydl.extract_info(url, download=True)
         return info_dict['filepath']
     
-youtube_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+youtube_url = "https://www.youtube.com/watch?v=nvd1lJDCvEA&pp=ygUOZWwgZ3JhbmRlIHRvdG8%3D"
 audio_file = download_youtube_audio(youtube_url, output_format="wav")
 
 print(f"Audio downloaded to: {audio_file}")
