@@ -13,8 +13,6 @@ commands =["!Restart","!Stop","!Clear"]
 response = model.generate_content("If you recieved this message say:Hi I'm ready, How can I help you today ?")
 print(f"{'Gemini :': <30}{response.text:<30}")
 
-prompt  = input("You : ")
-
 def check_commands(prompt):
     if(prompt in commands):
         match prompt:
@@ -29,36 +27,32 @@ def check_commands(prompt):
                 return False
             case _:
                 return False
-#Sperator
-print("-"*terminal_width)
+def generate_response(prompt):
+    #Generate response
+    response = model.generate_content(prompt)
+    #Response
+    print(f"\n{'Gemini :': <30}{response.text:<30}")
+def user_prompt():
+    return input("You : ")
+def bye(): 
+    generate_response("Bye !")
+    print("-"*terminal_width)
+
+prompt = user_prompt()
 command = 0
 while(not check_commands(prompt)):
     if(prompt in commands):
         command = 1
-        prompt = "Bye !"
-        response = model.generate_content(prompt)
-        #Response
-        print(f"\n{'Gemini :': <30}{response.text:<30}")
-        #Separator
-        print("-"*terminal_width)
+        bye()
     else:
-        command = 0
-        #input
-        prompt = input("You : ")
-        #Separator
+        if(command==1):
+            command = 0
+        user_prompt()
         print("-"*terminal_width)
-        response = model.generate_content(prompt)
-        #Response
-        print(f"\n{'Gemini :': <30}{response.text:<30}")
-        #Separator
+        generate_response(prompt)
         print("-"*terminal_width)
     
-if(command==1):
-    prompt = "Bye !"
-    response = model.generate_content(prompt)
-    #Response
-    print(f"\n{'Gemini :': <30}{response.text:<30}")
+if(command!=1):
+    generate_response(prompt)
 else:
-    response = model.generate_content(prompt)
-    #Response
-    print(f"\n{'Gemini :': <30}{response.text:<30}")
+   bye()
