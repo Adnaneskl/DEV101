@@ -40,6 +40,8 @@ def bye():
 
 prompt = user_prompt()
 command = 0
+
+print(check_commands(prompt))
 while(not check_commands(prompt)):
     if(prompt in commands):
         command = 1
