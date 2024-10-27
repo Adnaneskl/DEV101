@@ -1,4 +1,4 @@
-t=[10,0,1,12,0]
+T=[10,0,1,12,0]
 tap=False
 while top!=True:
     top=True
@@ -7,4 +7,4 @@ while top!=True:
             Tap=False
             x=T[i]
             T[i]=T[i+1]
-        *
+        

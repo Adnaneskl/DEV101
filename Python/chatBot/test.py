@@ -1,60 +1,55 @@
 import google.generativeai as genai
 import os
+
 API_KEY = "AIzaSyDTaF40r0Zjrqjq-809Ab92hbq9PsB8Epc"
 
 genai.configure(api_key=API_KEY)
-
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 terminal_width= os.get_terminal_size().columns
-commands =["!Restart","!Stop","!Clear"]
+commands =["!Stop","!Clear"]
 
-
-response = model.generate_content("If you recieved this message say:Hi I'm ready, How can I help you today ?")
-print(f"{'Gemini :': <30}{response.text:<30}")
-
+#Return false if prompt wasn't a command
 def check_commands(prompt):
-    if(prompt in commands):
-        match prompt:
-            case "!Restart":
-                print("A restart method was called")
-                return False
-            case "!Stop":
-                print("A stop method was called")
-                return True
-            case "!Clear":
-                print("A clear method was called")
-                return False
-            case _:
-                return False
+    if(prompt in commands and prompt == commands[0]):
+        return True
+    else: return False
+
+def separator():
+    print("\n"+"-"*terminal_width)
+#Generate a response for the prompt
 def generate_response(prompt):
-    #Generate response
-    response = model.generate_content(prompt)
-    #Response
-    print(f"\n{'Gemini :': <30}{response.text:<30}")
+    if(prompt not in commands):
+        response = model.generate_content(prompt)
+        separator()
+        print("\nGemini : ",response.text)
+        separator()
+#user prompt
 def user_prompt():
-    return input("You : ")
+    return input("\nYou : ")
+#Stop response for !Stop command
 def bye(): 
     generate_response("Bye !")
-    print("-"*terminal_width)
+#clear method for !Clear command
+def clear_screen():
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
+
+#Show cammands
+print("These are the commands that you can use : ",commands)
+#Generate the first response
+generate_response("If you recieved this message say:Hi I'm ready, How can I help you today ?")
 
 prompt = user_prompt()
-command = 0
 
-print(check_commands(prompt))
 while(not check_commands(prompt)):
     if(prompt in commands):
-        command = 1
-        bye()
-    else:
-        if(command==1):
-            command = 0
-        user_prompt()
-        print("-"*terminal_width)
+        if(prompt == commands[1]):
+            clear_screen()
+    if(prompt != commands[0]):
         generate_response(prompt)
-        print("-"*terminal_width)
-    
-if(command!=1):
-    generate_response(prompt)
-else:
-   bye()
+        prompt = user_prompt()
+
+bye()
