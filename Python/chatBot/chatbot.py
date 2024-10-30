@@ -46,10 +46,14 @@ def generate_response(prompt):
             prompt = "Hi"
         response = model.generate_content(prompt)
         separator()
-        print(f"{colors.GREEN}Gemini : ",end="")
+        if(prompt.__contains__("ascii")):
+            print(f"{colors.GREEN}Gemini : \n",end="")
+        else:
+            print(f"{colors.GREEN}Gemini : ",end="")
         for response_with_Effect in response.text:
             if(response_with_Effect == response.text[0]):
-                print()
+                if(not prompt.__contains__("ascii")):
+                    print()
             sleep(0.009)
             print(f"{colors.YELLOW}"+response_with_Effect,end="")
         print(end=f"{colors.RESET}")
