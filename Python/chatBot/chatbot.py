@@ -78,9 +78,9 @@ bool_preventai=False
 #true to prevent ai from responding
 def preventai(bool):
     if(bool!=False):
-        print("\033[3m","Ai now will resume responding to your questions :)",colors.RESET)
-    else:
         print("\033[3m","Ai now will not generate responses, type the command again to resume.",colors.RESET)
+    else:
+        print("\033[3m","Ai now will resume responding to your questions :)",colors.RESET)
 
 #Show help
 helpcommand()
@@ -99,7 +99,6 @@ while(not check_commands(prompt)):
             else:
                 bool_preventai = True
             preventai(bool_preventai)
-            print(bool_preventai)
         elif(prompt == commands[3]):
             clear_screen()
             helpcommand()
