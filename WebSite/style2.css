@@ -1,0 +1,135 @@
+body{
+    background-color: aliceblue ;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#facebook_logo{
+    color: rgb(104, 104, 184);
+    font-size: 60px;
+    font-weight: 600;
+}
+#facebook_logo:hover{
+    cursor: pointer;
+}
+#facebook_description{
+    font-size: 24px;
+}
+
+.login_form{
+    background-color: white;
+    width: 360px;
+    height: auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.login_form > input[type="text"],.login_form > input[type="password"]{
+    border-radius: 5px;
+    border: 2px;
+    padding: 15px;
+    width: 90%;
+    border-color: rgb(220, 228, 235);
+    border-style: solid;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+#forgotten_password{
+    color: rgb(104, 104, 184);
+    text-decoration: none;
+    font-size: 14px;
+    margin: 16px;
+}
+#forgotten_password:hover{
+    color: rgb(104, 104, 184);
+    text-decoration: underline; 
+}
+
+#login_btn{
+    width: 290px;
+    background-color: rgb(104, 104, 184);
+    color: white;
+    padding: 15px;  
+    border-radius: 5px;
+    border: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 5px;
+}
+#login_btn:hover{
+    background-color: rgb(77, 77, 249);
+}
+
+#login_btn:hover{
+    cursor: pointer;
+}
+
+#sign_up_btn{
+    background-color: rgb(60, 168, 60);
+    color: white;
+    padding: 15px;  
+    border: transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 8px;
+}
+#sign_up_btn:hover{
+    cursor: pointer;
+    background-color: rgb(79, 202, 79);
+}
+hr{
+border: 1px solid rgb(220, 228, 235);
+}
+
+.container{
+    padding: 50px 20px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    padding: 100px;
+    margin-bottom: calc(100vh - 570px );
+}
+
+
+.logo_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.hr_separator{
+    width: 100%;
+    margin-top: 1px;
+}
+
+#login_desc{
+    position: relative;
+    top: 50px;
+    font-size: 13px;
+}
+
+#login_desc > span{
+    font-weight: bold;
+}
+#login_desc > span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+footer{
+    background-color: white;
+    height: 200px;
+}
+
+footer > center > a{
+    text-decoration: none;
+    font-size: 14px;
+}
+footer > center > a:hover{
+    text-decoration: underline;
+}
