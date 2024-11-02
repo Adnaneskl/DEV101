@@ -1,5 +1,7 @@
 import google.generativeai as genai
 import os
+import sys
+from time import sleep
 
 API_KEY = "AIzaSyDTaF40r0Zjrqjq-809Ab92hbq9PsB8Epc"
 
@@ -26,7 +28,7 @@ def check_commands(prompt):
     else: return False
 def helpcommand ():
     string ="Welcome to chatBot version 1.0, a CLI program based on python that uses Google Generative AI api"
-    string += " to generate a excellent response to fit your prompt."
+    string += " to generate an excellent response to fit your prompt."
     string += "\n\nThis list below displays all the commands available on the first column, explanations are on the nextcolumn:"
     string +="\n\n\t!Stop\t\t\t:stop the execution of the program."
     string +="\n\t!Clear\t\t\t:clear the terminal."
@@ -35,17 +37,31 @@ def helpcommand ():
     print(string)
 
 def separator():
-    print("-"*terminal_width)
+    print()
+    '''print("-"*terminal_width)'''
 #Generate a response for the prompt
 def generate_response(prompt):
     if(prompt not in commands and prompt.__len__()>0):
+        if(prompt.__len__ == 0):
+            prompt = "Hi"
         response = model.generate_content(prompt)
         separator()
-        print(f"{colors.GREEN}Gemini : \n{colors.YELLOW}",response.text,end=f"{colors.RESET}")
+        if(prompt.__contains__("ascii")):
+            print(f"{colors.GREEN}Gemini : \n",end="")
+        else:
+            print(f"{colors.GREEN}Gemini : ",end="")
+        for response_with_Effect in response.text:
+            if(response_with_Effect == response.text[0]):
+                if(not prompt.__contains__("ascii")):
+                    print()
+            sleep(0.009)
+            print(f"{colors.YELLOW}"+response_with_Effect,end="")
+        print(end=f"{colors.RESET}")
         separator()
+        
 #user prompt
 def user_prompt():
-    return input(f"{colors.CYAN}You : {colors.WHITE}")
+    return input(f"{colors.CYAN}→ {colors.WHITE}")
 #Stop response for !Stop command
 def bye(): 
     generate_response("Bye !")
@@ -62,28 +78,36 @@ bool_preventai=False
 #true to prevent ai from responding
 def preventai(bool):
     if(bool!=False):
-        bool_preventai=False
-        print("Ai now will resume responding to your questions :)")
+        print("\033[3m","Ai now will not generate responses, type the command again to resume.",colors.RESET)
     else:
-        bool_preventai=True
-        print("Ai now will not generate responses, type the command again to resume.")
+        print("\033[3m","Ai now will resume responding to your questions :)",colors.RESET)
 
-#Show cammands
-print("These are the commands that you can use : ",commands)
-
+#Show help
+helpcommand()
 #Generate the first response
 generate_response("If you recieved this message say:Hi I'm ready, How can I help you today ?")
 prompt = user_prompt()
 while(not check_commands(prompt)):
+    #Check for commands and execute their actions
     if(prompt in commands):
         if(prompt == commands[1]):
             clear_screen()
+        #Change bool_preventai to true if requested
         elif(prompt == commands[2]):
+            if(bool_preventai != False):
+                bool_preventai = False
+            else:
+                bool_preventai = True
             preventai(bool_preventai)
         elif(prompt == commands[3]):
             clear_screen()
             helpcommand()
-    if(prompt != commands[0] and preventai == False):
+
+    #Generate only when bool_preventai is false
+    if(prompt != commands[0] and bool_preventai == False):
+        if(prompt not in commands and prompt.__len__ () !=0):
+            separator()
+            print("\033[3m","Waiting for response ..",colors.RESET)
         generate_response(prompt)
         prompt = user_prompt()
     else:
