@@ -1,0 +1,108 @@
+@font-face {
+    font-family: '256bytes';
+    src: url(../font/256\ Bytes.otf);
+}
+
+body{
+    margin: 0;
+    font-family: '256bytes';
+}
+header{
+    color: #A66E38;
+    background-color: #FFEEAD;
+}
+#navlogo{
+    display: grid;
+    grid-template-columns:200px auto 200px;
+}
+#topleft,#topmiddle,#topright{
+    align-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+#topmiddle{
+
+}
+
+#topmiddle span{
+    font-size: 50px;
+}
+#smallbar{
+    color: #FFEEAD;
+    background-color: #A66E38;  
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-columns: 200px auto 200px;
+    height: max-content;
+    padding:8px;
+
+   /* position: fixed;
+    top: 153px;
+    width: 100% ; */
+}
+#smallbar-left,#smallbar-middle,#smallbar-right{
+    align-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+#smallbar-left{
+    grid-column-start: 1;
+    height: auto;
+}
+#smallbar-middle{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#smallbar-right{
+    color: #FFEEAD;
+    background-color: #A66E38;
+    grid-column-start: 3;
+    grid-column-end: 4;    
+}
+.header-links{
+    text-decoration: none;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 10px 0px 10px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    color: #FFEEAD;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px; 
+}
+
+.header-links:hover{
+    color:#FFEEAD;
+    background-color: #bb8552;
+}
+#smallbar-left>span{
+    font-size: 28px;
+    padding: 0px 5px 0px 5px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+#smallbar-left>span:hover{
+    cursor: context-menu;
+    color: #96CEB4;
+    background-color: #bb8552;
+
+}
+
+main{
+    display: block;
+    height: auto;
+    width: auto;
+}
+
+#top_section marquee{
+    background-color: #96CEB4;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 3px;
+}
+
+#top_section article{
+    margin: 8px 0px 8px 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+

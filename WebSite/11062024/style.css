@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(244, 244, 201);
+    margin: 0;
+}z
+
+.nav{
+    background-color: rgb(194, 194, 128);
+    align-content: end;
+    text-align: center;
+    height: 200px;
+}
+
+.nav ul, .sidebar ul{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar{
+    background-color: rgb(223, 223, 108);
+    border: 1px solid black;
+    width: 200px;
+    height: 450px;
+    text-align: center;
+}
+
+.nav ul li{
+    display: inline;
+    border: 1px solid transparent;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+
+.sidebar ul li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    width: 200px;
+    align-content: center;
+    border-bottom: 1px solid black ;
+}

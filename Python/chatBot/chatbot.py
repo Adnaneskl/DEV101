@@ -9,7 +9,7 @@ genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 terminal_width= os.get_terminal_size().columns
-commands =["!Stop","!Clear","!Prevent","!Help"]
+commands =["!Stop","!Clear","!Prevent","!Help","!Save"]
 #class for colors
 class colors:
     RESET = "\033[0m"
@@ -102,6 +102,11 @@ while(not check_commands(prompt)):
         elif(prompt == commands[3]):
             clear_screen()
             helpcommand()
+        elif(prompt == commands[4]):
+            print("save command requested..")
+            print("choose a path :\n")
+
+            path = input(" ")
 
     #Generate only when bool_preventai is false
     if(prompt != commands[0] and bool_preventai == False):

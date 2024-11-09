@@ -1,5 +1,5 @@
 body{
-    background-color: aliceblue ;
+    background-color:  ;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -132,4 +132,7 @@ footer > center > a{
 }
 footer > center > a:hover{
     text-decoration: underline;
+}
+.right_container{
+    background-color: rgb(255, 255, 255);
 }
