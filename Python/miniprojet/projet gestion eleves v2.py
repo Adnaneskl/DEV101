@@ -1,3 +1,5 @@
+import os
+
 def forecolor(color):
     match color:
         case "RESET" :
@@ -18,6 +20,7 @@ def forecolor(color):
             return "\033[97m"
 
 def menu():
+   # print(len(stagiaires))
     print(f"{forecolor("GREEN")}1.{forecolor("WHITE")}Saisir un étudiant ou plusieurs étudiants.")
     print(f"{forecolor("GREEN")}2.{forecolor("WHITE")}Afficher la liste des étudiants")
     print(f"{forecolor("GREEN")}3.{forecolor("WHITE")}Recherche un étudiant par numéro")
@@ -31,34 +34,47 @@ def menu():
 stagiaires = [""]
 filiaires = ["DEV","IR","CM","GE"]
 
+def terminal_width():
+    return os.get_terminal_size().columns
+def title(title,symbol : str):
+    title_len = len(title)
+    stars = int((terminal_width()/2)-(title_len/2))
+    print(f"{forecolor("CYAN")}","*"*stars,title,"*"*stars,f"{forecolor("RESET")}",sep="")
+
 def ajouter_stagiaire():
+    title("Ajout d'un stagiaire :","*")
+
     continuer = "oui"
     while(continuer != "non"):
         print(f"{forecolor("YELLOW")}")
-        nom = input("Entrez le nom du stagiaire : ")
+        nom = input("\tEntrez le nom du stagiaire : ")
+        print(f"{forecolor("RESET")}")
         while(nom.__len__() <1):
             print(f"{forecolor("RED")}")
-            nom = input("Merci d'entrez un nom du stagiaire valide : ")
+            nom = input("\tMerci d'entrez un nom du stagiaire valide : ")
+            print(f"{forecolor("RESET")}")
 
         print(f"{forecolor("YELLOW")}") 
-        prenom =input("Entrez le prénom du stagiaire : ")
+        prenom =input("\tEntrez le prénom du stagiaire : ")
+        print(f"{forecolor("RESET")}")
         while(prenom.__len__() <1):
             print(f"{forecolor("RED")}")
-            prenom = input("Merci d'entrez un prénom du stagiaire valide : ")
+            prenom = input("\tMerci d'entrez un prénom du stagiaire valide : ")
+            print(f"{forecolor("RESET")}")
 
         for i in filiaires :
             print()
             match i :
                 case "DEV":
-                    print(filiaires.index(i)+1,"Développement Digitale.",sep=".",end="")
+                    print(f"\t{filiaires.index(i)+1}","Développement Digitale.",sep=".",end="")
                 case "IR":
-                    print(filiaires.index(i)+1,"Infrastructure Réseaux",sep=".",end="")
+                    print(f"\t{filiaires.index(i)+1}","Infrastructure Réseaux",sep=".",end="")
                 case "CM":
-                    print(filiaires.index(i)+1,"Comptabilité et Finance.",sep=".",end="")
+                    print(f"\t{filiaires.index(i)+1}","Comptabilité et Finance.",sep=".",end="")
                 case "GE":
-                    print(filiaires.index(i)+1,"Gestion d'Entreprises.",sep=".",end="")
-        print(f"{forecolor("YELLOW")}")
-        choix_filiaire = input("\nChoissiez une filiaire : ")
+                    print(f"\t{filiaires.index(i)+1}","Gestion d'Entreprises.",sep=".",end="")
+        print(f"{forecolor("WHITE")}\n")
+        choix_filiaire = input("\tChoissiez une filière : ")
 
         while(not choix_filiaire.isdigit() or choix_filiaire.__len__() <1 or choix_filiaire not in ["1","2","3","4"]):
             print(f"{forecolor("RED")}")
@@ -82,13 +98,12 @@ def ajouter_stagiaire():
                     note1=input("Entrez la note du français : ")
                     while((not note1.isdigit() or note1.__len__()<1 or note1.__len__()>2)):
                         if(note1.isdigit()):
-                                while(int(note1) > 20 or int(note1) < 0):
-                                    print(f"{forecolor("RED")}")
-                                    print("La note doit être comprise entre 0 et 20 !!!")
-                                    note1 = ""
+                            if(int(note1) > 20 or int(note1) < 0 ):
+                                print(f"{forecolor("RED")}")
+                                note1=input("La note doit être comprise entre 0 et 20 !!! : ")        
                         else:
                             print(f"{forecolor("YELLOW")}")
-                            note1=input("Entrez la note valide du Français : ")
+                            note1=input("Entrez une note valide de Français : ")
                     if(note1.isdigit()):
                         note1=float(note1)
                 case 1:
@@ -96,13 +111,12 @@ def ajouter_stagiaire():
                     note2=input("Entrez la note de l'Arabe : ")
                     while((not note2.isdigit() or note2.__len__()<1 or note2.__len__()>2)):
                         if(note2.isdigit()):
-                                while(int(note2) > 20 or int(note2) < 0):
-                                    print(f"{forecolor("RED")}")
-                                    print("La note doit être comprise entre 0 et 20 !!!")
-                                    note2 = ""
+                            while(int(note2) > 20 or int(note2) < 0):
+                                print(f"{forecolor("RED")}")
+                                note2=input("La note doit être comprise entre 0 et 20 !!! : ")
                         else:
                             print(f"{forecolor("YELLOW")}")
-                            note2=input("Entrez la note valide de l'Arabe : ")
+                            note2=input("Entrez une note valide de l'Arabe : ")
                     if(note2.isdigit()):
                         note2=float(note2)
                 case 2:
@@ -110,13 +124,12 @@ def ajouter_stagiaire():
                     note3=input("Entrez la note de Physique : ")
                     while((not note3.isdigit() or note3.__len__()<1 or note3.__len__()>2)):
                         if(note3.isdigit()):
-                                while(int(note3) > 20 or int(note3) < 0):
-                                    print(f"{forecolor("RED")}")
-                                    print("La note doit être comprise entre 0 et 20 !!!")
-                                    note3 = ""
+                            while(int(note3) > 20 or int(note3) < 0):
+                                print(f"{forecolor("RED")}")
+                                note3=input("La note doit être comprise entre 0 et 20 !!! : ")  
                         else:
                             print(f"{forecolor("YELLOW")}")
-                            note3=input("Entrez la note valide de Physique : ")
+                            note3=input("Entrez une note valide de Physique : ")
                     if(note3.isdigit()):
                         note3=float(note3)
                 case 3:
@@ -124,13 +137,12 @@ def ajouter_stagiaire():
                     note4=input("Entrez la note des Mathématiques : ")
                     while((not note4.isdigit() or note4.__len__()<1 or note4.__len__()>2)):
                         if(note4.isdigit()):
-                                while(int(note4) > 20 or int(note4) < 0):
-                                    print(f"{forecolor("RED")}")
-                                    print("La note doit être comprise entre 0 et 20 !!!")
-                                    note4 = ""
+                            while(int(note4) > 20 or int(note4) < 0):
+                                print(f"{forecolor("RED")}")
+                                note4=input("La note doit être comprise entre 0 et 20 !!! : ")  
                         else:
                             print(f"{forecolor("YELLOW")}")
-                            note4=input("Entrez la note valide des Mathématiques : ")
+                            note4=input("Entrez une note valide des Mathématiques : ")
                     if(note4.isdigit()):
                         note4=float(note4)
 
@@ -139,13 +151,12 @@ def ajouter_stagiaire():
                     note5=input("Entrez la note de l'Histoire et Géographie : ")
                     while((not note5.isdigit() or note5.__len__()<1 or note5.__len__()>2)):
                         if(note5.isdigit()):
-                                while(int(note5) > 20 or int(note5) < 0):
-                                    print(f"{forecolor("RED")}")
-                                    print("La note doit être comprise entre 0 et 20 !!!")
-                                    note5 = ""
+                            while(int(note5) > 20 or int(note5) < 0):
+                                print(f"{forecolor("RED")}")
+                                note5 = input("La note doit être comprise entre 0 et 20 !!! : ")
                         else:
                             print(f"{forecolor("YELLOW")}")
-                            note5=input("Entrez la note valide de l'Histoire et Géographie : ")
+                            note5=input("Entrez une note valide de l'Histoire et Géographie : ")
                     if(note5.isdigit()):
                         note5=float(note5)
         #Calcul de moyenne
@@ -159,7 +170,8 @@ def ajouter_stagiaire():
         stagiaire = [num,nom,prenom,filiaire,moyenne,note1,note2,note3,note4,note5]
         stagiaires.append(stagiaire)
         print(f"{forecolor("WHITE")}")
-        continuer = input(f"Voulez-vous countinuez ? '{forecolor("YELLOW")}non{forecolor("RESET")}' pour retourner au menu : ")
+        continuer = input(f"Voulez-vous countinuez ? '{forecolor("YELLOW")}non{forecolor("RESET")}' pour retourner au menu : ").lower()
+        print()
 
 def recherche_par_num():
     print(f"{forecolor("WHITE")}")

@@ -7,6 +7,7 @@ PURPLE => "\033[35m",
 CYAN   => "\033[36m",
 WHITE  => "\033[37m",
 
+
 # background color
 BLACKB  => "\033[40m",
 REDB    => "\033[41m",
