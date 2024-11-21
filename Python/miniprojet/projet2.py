@@ -30,7 +30,7 @@ def add_stdts():
 
 def sort_by_branch():
     for _ in stdts_lst:
-        stdts_lst.sort(key=lambda row: row[2])
+        stdts_lst.sort(key=lambda row: row[0])
 
 def savetoFile():
     file = open("students_list.txt","w")
@@ -45,4 +45,3 @@ def savetoFile():
 add_stdts()
 sort_by_branch()
 savetoFile()
-

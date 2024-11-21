@@ -1,4 +1,2 @@
-4;Imam;Mohammed Sikilli;2013
-1;Adnane;Sikilli;1998
-2;Hidaya;sikilli;2000
-3;Raouane;sikilli;2008
+1;hello;world;1
+2;goodbye;world;2
